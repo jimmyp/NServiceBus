@@ -1,0 +1,4 @@
+- Build via NAnt script which fixed a lot of the missing references.
+- Seems there are still some external binaries missing though, most noticably:
+	- log4net, this is in the lib folder so why is it not being found
+	- *some* and not other Raven assemblies, again this is strange as I would assume that they all get pulled in by NuGet as part of the build script.
