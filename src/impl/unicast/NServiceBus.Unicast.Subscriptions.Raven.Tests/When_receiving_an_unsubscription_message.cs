@@ -12,7 +12,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         [Test]
         public void All_subscription_entries_for_specfied_message_types_should_be_removed()
         {
-            string clientEndpoint = "TestEndpoint";
+            var clientEndpoint = Address.Parse("TestEndpoint");
 
             var messageTypes = new List<string> { "MessageType1", "MessageType2" };
 

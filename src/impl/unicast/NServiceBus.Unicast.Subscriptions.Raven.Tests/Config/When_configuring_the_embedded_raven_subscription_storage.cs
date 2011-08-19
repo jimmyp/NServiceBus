@@ -1,6 +1,6 @@
 using NServiceBus.Unicast.Subscriptions.Raven.Config;
 using NUnit.Framework;
-using Raven.Client.Client;
+using Raven.Client.Embedded;
 using Raven.Storage.Esent;
 
 namespace NServiceBus.Unicast.Subscriptions.Raven.Tests.Config

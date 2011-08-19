@@ -34,6 +34,9 @@
     <Reference Include="log4net">
       <HintPath>..\..\..\..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\..\build\output\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Config">
       <HintPath>..\..\..\..\build\nservicebus.core\NServiceBus.Config.dll</HintPath>
     </Reference>
@@ -50,13 +53,13 @@
       <HintPath>..\..\..\..\tools\NUnit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Embedded">
-      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.397\lib\net40\Raven.Client.Embedded.dll</HintPath>
+      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.427\lib\net40\Raven.Client.Embedded.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
       <HintPath>..\..\..\..\packages\RavenDB.1.0.0.427\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.397\lib\net40\Raven.Database.dll</HintPath>
+    <Reference Include="Raven.Database">
+      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.427\lib\net40\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Http">
       <HintPath>..\..\..\..\packages\RavenDB.1.0.0.427\server\Raven.Http.dll</HintPath>
@@ -65,10 +68,10 @@
       <HintPath>..\..\..\..\packages\RavenDB.1.0.0.427\server\Raven.Server.exe</HintPath>
     </Reference>
     <Reference Include="Raven.Storage.Esent">
-      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.397\lib\net40\Raven.Storage.Esent.dll</HintPath>
+      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.427\lib\net40\Raven.Storage.Esent.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Storage.Managed">
-      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.397\lib\net40\Raven.Storage.Managed.dll</HintPath>
+      <HintPath>..\..\..\..\packages\RavenDB-Embedded.1.0.0.427\lib\net40\Raven.Storage.Managed.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\..\..\lib\rhino.mocks\Rhino.Mocks.dll</HintPath>

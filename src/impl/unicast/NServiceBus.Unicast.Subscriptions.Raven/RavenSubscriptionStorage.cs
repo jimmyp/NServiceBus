@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using NServiceBus.Unicast.Subscriptions.Raven.Indexes;
+using Raven.Abstractions.Exceptions;
 using Raven.Client;
-using RavenDbExceptions = Raven.Http.Exceptions;
 
 namespace NServiceBus.Unicast.Subscriptions.Raven
 {
@@ -12,6 +12,11 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
         public IDocumentStore Store { get; set; }
 
         public string Endpoint { get; set; }
+
+        public IEnumerable<Address> GetSubscriberAddressesForMessage(IEnumerable<string> messageTypes)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Init()
         {
@@ -35,10 +40,15 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
                     session.SaveChanges();
                 }
             }
-            catch (RavenDbExceptions.ConcurrencyException ex)
+            catch (ConcurrencyException ex)
             {
                 
             }
+        }
+
+        public void Subscribe(Address client, IEnumerable<string> messageTypes)
+        {
+            throw new NotImplementedException();
         }
 
         public void Unsubscribe(string client, IEnumerable<string> messageTypes)
@@ -52,6 +62,11 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
 
                 session.SaveChanges();
             }
+        }
+
+        public void Unsubscribe(Address client, IEnumerable<string> messageTypes)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<string> GetSubscribersForMessage(IEnumerable<string> messageTypes)

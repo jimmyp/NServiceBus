@@ -3,8 +3,8 @@ using System.Reflection;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.Persistence.Raven.Config;
 using Raven.Client;
-using Raven.Client.Client;
 using Raven.Client.Document;
+using Raven.Client.Embedded;
 
 namespace NServiceBus.Unicast.Subscriptions.Raven.Config
 {

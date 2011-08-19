@@ -12,7 +12,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         [Test]
         public void A_subscription_entry_should_be_added_to_the_database()
         {
-            string clientEndpoint = "TestEndpoint";
+            var clientEndpoint = Address.Parse("TestEndpoint");
 
             var messageTypes = new List<String> { "MessageType1", "MessageType2" };
 

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using NUnit.Framework;
 using Raven.Client;
-using Raven.Client.Client;
+using Raven.Client.Embedded;
 
 namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
 {
