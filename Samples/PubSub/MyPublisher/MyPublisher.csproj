@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,7 +14,6 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Config">
+      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Config.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.Core.dll</HintPath>
@@ -50,9 +53,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\NServiceBus.Host.exe</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder">
+      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Persistence.Raven">
+      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Persistence.Raven.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Unicast.Subscriptions">
+      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Unicast.Subscriptions.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Unicast.Subscriptions.Raven">
+      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Unicast.Subscriptions.Raven.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
-      
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
