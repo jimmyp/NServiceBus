@@ -14,7 +14,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         public void SetupContext()
         {
             path = Path.GetRandomFileName();
-            store = new EmbeddableDocumentStore { RunInMemory = true, DataDirectory = path };
+            store = new EmbeddableDocumentStore { RunInMemory = true };
             store.Initialize();
 
             storage = new RavenSubscriptionStorage { Store = store, Endpoint = "SubscriptionEndpoint"};
@@ -24,7 +24,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         [TestFixtureTearDown]
         public void Teardown()
         {
-            Directory.Delete(path, true);
+            store.Dispose();
         }
     }
 }

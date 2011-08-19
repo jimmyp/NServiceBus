@@ -12,12 +12,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
         public IDocumentStore Store { get; set; }
 
         public string Endpoint { get; set; }
-
-        public IEnumerable<Address> GetSubscriberAddressesForMessage(IEnumerable<string> messageTypes)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void Init()
         {
             new SubscriptionsByMessageType().Execute(Store);
@@ -25,11 +20,17 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
 
         public void Subscribe(string client, IEnumerable<string> messageTypes)
         {
-            var subscriptions = messageTypes.Select(m => new Subscription {
-                    Id = Subscription.FormatId(Endpoint, m, client),
-                    MessageType = m,
-                    Client = client
-                }).ToList();
+            Subscribe(Address.Parse(client), messageTypes);
+        }
+
+        public void Subscribe(Address client, IEnumerable<string> messageTypes)
+        {
+            var subscriptions = messageTypes.Select(m => new Subscription
+            {
+                Id = Subscription.FormatId(Endpoint, m, client),
+                MessageType = m,
+                Client = client
+            }).ToList();
 
             try
             {
@@ -42,31 +43,27 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
             }
             catch (ConcurrencyException ex)
             {
-                
-            }
-        }
 
-        public void Subscribe(Address client, IEnumerable<string> messageTypes)
-        {
-            throw new NotImplementedException();
+            }
         }
 
         public void Unsubscribe(string client, IEnumerable<string> messageTypes)
         {
-            var ids = messageTypes
-                .Select(m => Subscription.FormatId(Endpoint, m, client))
-                .ToList();
-            
-            using (var session = Store.OpenSession()) {
-                ids.ForEach(id => session.Advanced.DatabaseCommands.Delete(id, null));
-
-                session.SaveChanges();
-            }
+            Unsubscribe(Address.Parse(client), messageTypes);
         }
 
         public void Unsubscribe(Address client, IEnumerable<string> messageTypes)
         {
-            throw new NotImplementedException();
+            var ids = messageTypes
+                .Select(m => Subscription.FormatId(Endpoint, m, client))
+                .ToList();
+
+            using (var session = Store.OpenSession())
+            {
+                ids.ForEach(id => session.Advanced.DatabaseCommands.Delete(id, null));
+
+                session.SaveChanges();
+            }
         }
 
         public IEnumerable<string> GetSubscribersForMessage(IEnumerable<string> messageTypes)
@@ -74,7 +71,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
             using (var session = Store.OpenSession())
             {
                 return messageTypes.SelectMany(m => GetSubscribersForMessage(session, m))
-                    .Select(s => s.Client)
+                    .Select(s => s.Client.ToString())
                     .ToList()
                     .Distinct();
             }
@@ -88,5 +85,18 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
 
             return clients;
         }
+        
+        public IEnumerable<Address> GetSubscriberAddressesForMessage(IEnumerable<string> messageTypes)
+        {
+            using (var session = Store.OpenSession())
+            {
+                return messageTypes.SelectMany(m => GetSubscribersForMessage(session, m))
+                   .Select(s => s.Client)
+                   .ToList()
+                   .Distinct();
+            }
+        }
+
+
     }
 }
