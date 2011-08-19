@@ -66,37 +66,37 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
             }
         }
 
-        public IEnumerable<string> GetSubscribersForMessage(IEnumerable<string> messageTypes)
+        IEnumerable<Subscription> GetSubscribersForMessage(string messageType)
         {
             using (var session = Store.OpenSession())
             {
-                return messageTypes.SelectMany(m => GetSubscribersForMessage(session, m))
-                    .Select(s => s.Client.ToString())
-                    .ToList()
-                    .Distinct();
+                var clients = session.Query<Subscription, SubscriptionsByMessageType>()
+                    .Customize(c => c.WaitForNonStaleResults())
+                    .Where(s => s.MessageType == messageType);
+
+                return clients;
             }
         }
 
-        IEnumerable<Subscription> GetSubscribersForMessage(IDocumentSession session, string messageType)
+        private IEnumerable<Subscription> GetAllSubscribersForMessageTypes(IEnumerable<string> messageTypes)
         {
-            var clients = session.Query<Subscription, SubscriptionsByMessageType>()
-                .Customize(c => c.WaitForNonStaleResults())
-                .Where(s => s.MessageType == messageType);
+            return messageTypes.SelectMany(GetSubscribersForMessage);
+        }
 
-            return clients;
+        public IEnumerable<string> GetSubscribersForMessage(IEnumerable<string> messageTypes)
+        {
+            return GetAllSubscribersForMessageTypes(messageTypes)
+                    .Select(s => s.Client.ToString())
+                    .ToList()
+                    .Distinct();
         }
         
         public IEnumerable<Address> GetSubscriberAddressesForMessage(IEnumerable<string> messageTypes)
         {
-            using (var session = Store.OpenSession())
-            {
-                return messageTypes.SelectMany(m => GetSubscribersForMessage(session, m))
+                return GetAllSubscribersForMessageTypes(messageTypes)
                    .Select(s => s.Client)
                    .ToList()
                    .Distinct();
-            }
         }
-
-
     }
 }
