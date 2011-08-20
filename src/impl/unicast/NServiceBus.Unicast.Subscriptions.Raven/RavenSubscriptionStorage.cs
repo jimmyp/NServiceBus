@@ -65,38 +65,41 @@ namespace NServiceBus.Unicast.Subscriptions.Raven
                 session.SaveChanges();
             }
         }
-
-        IEnumerable<Subscription> GetSubscribersForMessage(string messageType)
+        
+        private IEnumerable<Subscription> GetSubscribersForMessageType(string messageType, IDocumentSession session)
         {
-            using (var session = Store.OpenSession())
-            {
-                var clients = session.Query<Subscription, SubscriptionsByMessageType>()
-                    .Customize(c => c.WaitForNonStaleResults())
-                    .Where(s => s.MessageType == messageType);
+            var clients = session.Query<Subscription, SubscriptionsByMessageType>()
+                .Customize(c => c.WaitForNonStaleResults())
+                .Where(s => s.MessageType == messageType);
 
-                return clients;
-            }
+            return clients;
         }
 
-        private IEnumerable<Subscription> GetAllSubscribersForMessageTypes(IEnumerable<string> messageTypes)
+        private IEnumerable<Subscription> GetAllSubscribersToMessageTypes(IEnumerable<string> messageTypes, IDocumentSession session)
         {
-            return messageTypes.SelectMany(GetSubscribersForMessage);
+            return messageTypes.SelectMany(m => GetSubscribersForMessageType(m, session));
         }
 
         public IEnumerable<string> GetSubscribersForMessage(IEnumerable<string> messageTypes)
         {
-            return GetAllSubscribersForMessageTypes(messageTypes)
+            using (var session = Store.OpenSession())
+            {
+                return messageTypes.SelectMany(m => GetSubscribersForMessageType(m, session))
                     .Select(s => s.Client.ToString())
                     .ToList()
                     .Distinct();
+            }
         }
         
         public IEnumerable<Address> GetSubscriberAddressesForMessage(IEnumerable<string> messageTypes)
         {
-                return GetAllSubscribersForMessageTypes(messageTypes)
+            using (var session = Store.OpenSession())
+            {
+                return GetAllSubscribersToMessageTypes(messageTypes, session)
                    .Select(s => s.Client)
                    .ToList()
                    .Distinct();
+            }
         }
     }
 }

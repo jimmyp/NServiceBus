@@ -12,7 +12,7 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         public void The_names_of_all_subscibers_should_be_returned()
         {
             var clientEndpoint = Address.Parse("TestEndpoint");
-
+            
             storage.Subscribe(clientEndpoint, new List<string> { "MessageType1" });
             storage.Subscribe(clientEndpoint, new List<string> { "MessageType2" });
             storage.Subscribe(Address.Parse("some other endpoint"), new List<string> { "MessageType1" });

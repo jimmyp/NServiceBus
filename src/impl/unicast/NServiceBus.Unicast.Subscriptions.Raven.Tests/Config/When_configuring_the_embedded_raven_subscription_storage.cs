@@ -8,9 +8,6 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests.Config
     [TestFixture]
     public class When_configuring_the_embedded_raven_subscription_storage
     {
-        //HACK: Needed to get escent working w/ NUnit
-        TransactionalStorage storage;
-
         RavenSubscriptionStorage subscriptionStorage;
 
         [TestFixtureSetUp]
