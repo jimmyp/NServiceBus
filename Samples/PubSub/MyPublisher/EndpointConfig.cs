@@ -16,7 +16,7 @@ namespace MyPublisher
         public void Init()
         {
             NServiceBus.Configure.With()
-                .RavenSubscriptionStorage("Server")
+                .EmbeddedRavenSubscriptionStorage()
                 .XmlSerializer()
                 .UnicastBus();
         }

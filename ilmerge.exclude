@@ -4,3 +4,4 @@ Rhino.Mocks.*
 Castle.Core.Interceptor.IProxyTargetAccessor
 Castle.DynamicProxy.AbstractInvocation
 NHibernate.Cfg.MappingSchema.*
+Raven.Abstractions.MEF.IPartMetadata
