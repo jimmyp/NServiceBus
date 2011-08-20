@@ -38,32 +38,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\binaries\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus, Version=1.9.3.40920, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\binaries\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\build\output\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Config">
-      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Config.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\build\output\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\binaries\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Host, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\binaries\NServiceBus.Host.exe</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder">
-      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.ObjectBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Persistence.Raven">
-      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Persistence.Raven.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Unicast.Subscriptions">
-      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Unicast.Subscriptions.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Unicast.Subscriptions.Raven">
-      <HintPath>..\..\..\src\impl\unicast\NServiceBus.Unicast.Subscriptions.Raven\bin\Debug\NServiceBus.Unicast.Subscriptions.Raven.dll</HintPath>
+    <Reference Include="NServiceBus.Host, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\..\..\build\output\host\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

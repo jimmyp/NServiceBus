@@ -1,3 +1,4 @@
-- Build via NAnt script which fixed a lot of the missing references.
-- Fixed Raven references, seems it should have been referenceing Raven.Embedded, to which the path needed to be fixed and the namespaces changed, mainly from Raven.Client to Raven.Embedded.Client.
-- Also had to fix some code it now compiles but tests are failing
+- Working with external server, had to switch to using an MD5 hash for subscription id though as the id we were using was going to be to long for the HTTP API
+- Having problems using embedded server, I think it's because the raven binaries are internalised and made therefore mef cannot import its components cos they're not public
+
+- Final task is to enable the http server on the embedded server
