@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
 {
     [TestFixture]
-    [Ignore("Unsubscribe Is broken")]
     public class When_receiving_an_unsubscription_message : WithRavenSubscriptionStorage
     {
         [Test]
@@ -14,30 +13,22 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Tests
         {
             var clientEndpoint = Address.Parse("TestEndpoint");
 
-            var messageTypes = new List<string> { "MessageType1", "MessageType2" };
+            var messageTypes = new List<string> {"MessageType1", "MessageType2"};
 
-            //using (var transaction = new TransactionScope())
-            //{
-                storage.Subscribe(clientEndpoint, messageTypes);
-               // transaction.Complete();
-            //}
+            storage.Subscribe(clientEndpoint, messageTypes);
 
-
-            //using (var transaction = new TransactionScope())
-            //{
-                storage.Unsubscribe(clientEndpoint, messageTypes);
-            //    transaction.Complete();
-            //}
-
+            storage.Unsubscribe(clientEndpoint, messageTypes);
 
             using (var session = store.OpenSession())
             {
-                var subscriptions = session
+                var subscriptionCount = session
                     .Query<Subscription>()
                     .Customize(c => c.WaitForNonStaleResults())
+                    .ToList()
                     .Count();
 
-                Assert.AreEqual(0, subscriptions);
+
+                Assert.AreEqual(0, subscriptionCount);
             }
         }
     }
