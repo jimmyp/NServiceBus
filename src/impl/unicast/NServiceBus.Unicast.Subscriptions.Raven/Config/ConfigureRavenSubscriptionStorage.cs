@@ -5,6 +5,7 @@ using NServiceBus.Persistence.Raven.Config;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
+using Raven.Http;
 
 namespace NServiceBus.Unicast.Subscriptions.Raven.Config
 {
@@ -16,7 +17,8 @@ namespace NServiceBus.Unicast.Subscriptions.Raven.Config
 
         public static Configure EmbeddedRavenSubscriptionStorage(this Configure config)
         {
-            var store = new EmbeddableDocumentStore { ResourceManagerId = DefaultResourceManagerId, DataDirectory = DefaultDataDirectory };
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(new Uri(DefaultUrl).Port);
+            var store = new EmbeddableDocumentStore { ResourceManagerId = DefaultResourceManagerId, DataDirectory = DefaultDataDirectory, UseEmbeddedHttpServer = true};
             store.Initialize();
 
             return RavenSubscriptionStorage(config, store, "Default");

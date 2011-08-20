@@ -2,4 +2,5 @@
 + Exliuded  from interanlization in ILMerge as it needs to be public for MEF
 - Raven.Database.Config.InMemoryRavenConfiguration:431 has hardcoded string refencences to transcactional storage proivider types which are fully qualified with assembly names, which means we need to actually need to reference that assembly. When we do NSB will try and scan it as well throwing more errors
 
-* Final task is to enable the http server on the embedded server
+* Enable the http server on the embedded server
+* Allow configureable enpoint addresses for raven
