@@ -1,1 +1,0 @@
-Need to get NServiceBus.Unicast.Subscriptions.Raven.sln in order to test Raven subscription storage with this smaple.
