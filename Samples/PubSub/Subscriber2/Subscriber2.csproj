@@ -91,9 +91,7 @@
     <Compile Include="Subscriber2Endpoint.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyMessages\MyMessages.csproj">
